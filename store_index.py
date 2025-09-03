@@ -27,7 +27,7 @@ if not pc.has_index(index_name):
         name=index_name, 
         dimension=384, 
         metric="cosine",
-        spec=ServerlessSpec(cloud="aws", region="us-east-1")
+        spec=ServerlessSpec(cloud="aws", region="eu-north-1")
     )
 
 index = pc.Index(index_name)
