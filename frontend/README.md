@@ -1,36 +1,183 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Medical ChatBot - Modular Frontend Structure
 
-## Getting Started
+Bu proje, Tailwind CSS kullanarak temiz ve modüler bir yapıda yeniden düzenlenmiştir.
 
-First, run the development server:
+## 📁 Proje Yapısı
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Frontend Klasör Organizasyonu
+
+```
+frontend/
+├── src/
+│   ├── app/                 # Next.js app directory
+│   │   ├── globals.css      # Global styles ve Tailwind konfigürasyonu
+│   │   ├── layout.tsx       # Ana layout
+│   │   └── page.tsx         # Ana sayfa
+│   ├── components/          # Tüm React componentleri
+│   │   ├── ui/              # Shadcn/ui base componentleri
+│   │   ├── common/          # Ortak kullanılan componentler
+│   │   │   ├── Layout.tsx   # Ana layout wrapper
+│   │   │   └── index.ts     # Export barrel
+│   │   ├── chat/            # Chat ile ilgili tüm componentler
+│   │   │   ├── ChatHeader.tsx
+│   │   │   ├── ChatCardHeader.tsx
+│   │   │   ├── MessageItem.tsx
+│   │   │   ├── MessageList.tsx
+│   │   │   ├── TypingIndicator.tsx
+│   │   │   ├── ChatInput.tsx
+│   │   │   ├── ChatFooter.tsx
+│   │   │   └── index.ts     # Export barrel
+│   │   └── ChatBot.tsx      # Ana chat component
+│   ├── hooks/               # Custom React hooks
+│   │   ├── useChat.ts       # Chat state yönetimi
+│   │   ├── useAutoScroll.ts # Otomatik scroll işlevi
+│   │   └── index.ts         # Export barrel
+│   ├── services/            # API ve external servisler
+│   │   └── chatService.ts   # Chat API servisi
+│   ├── types/               # TypeScript type definitions
+│   │   └── chat.ts          # Chat ile ilgili tipler
+│   ├── constants/           # Sabitler ve konfigürasyon
+│   │   └── config.ts        # Uygulama konfigürasyonu
+│   └── lib/                 # Utility fonksiyonları
+│       └── utils.ts         # Genel utility fonksiyonları
+└── .env.local               # Environment variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗️ Modüler Yapının Avantajları
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. **Temiz Kod Organizasyonu**
+- Her component kendi dosyasında
+- İlgili componentler aynı klasörde gruplanmış
+- Barrel exports ile temiz import statements
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. **Yeniden Kullanılabilirlik**
+- Componentler birbirinden bağımsız
+- Hook'lar farklı componentlerde kullanılabilir
+- Servisler centralized
 
-## Learn More
+### 3. **Tip Güvenliği**
+- TypeScript ile tam tip desteği
+- Interface'ler ayrı dosyalarda
+- Compile-time hata yakalama
 
-To learn more about Next.js, take a look at the following resources:
+### 4. **Maintainability**
+- Kolay debug etme
+- Kolay test yazma
+- Kolay refactoring
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Tailwind CSS Kullanımı
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Design System
+- **Color Palette**: Modern oklch color space kullanımı
+- **Dark Mode**: Otomatik tema değişimi
+- **Typography**: Geist font family
+- **Spacing**: Consistent spacing scale
 
-## Deploy on Vercel
+### Component Styling
+```tsx
+// Örnek: MessageItem component
+<div className={`
+  ${UI_CONFIG.MAX_MESSAGE_WIDTH} 
+  rounded-2xl px-4 py-3 
+  ${message.isBot
+    ? 'bg-gray-100 dark:bg-slate-800 text-gray-900 dark:text-white'
+    : 'bg-blue-600 text-white ml-auto'
+  }
+`}>
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Responsive Design
+- Mobile-first approach
+- Responsive padding: `p-4 md:p-6 lg:p-8`
+- Flexible layouts
+- Touch-friendly interface
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 Konfigürasyon
+
+### Environment Variables
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8081
+NEXT_PUBLIC_API_ENDPOINT=/get
+NEXT_PUBLIC_APP_NAME="Medical AI Assistant"
+NEXT_PUBLIC_APP_DESCRIPTION="Profesyonel tıbbi AI asistanınız"
+```
+
+### Constants
+```typescript
+export const CHAT_CONFIG = {
+  API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8081',
+  CHAT_ENDPOINT: process.env.NEXT_PUBLIC_API_ENDPOINT || '/get',
+  MAX_MESSAGE_LENGTH: 1000,
+} as const;
+```
+
+## 🎯 Custom Hooks
+
+### useChat Hook
+- Message state yönetimi
+- API çağrıları
+- Error handling
+- Loading states
+
+### useAutoScroll Hook
+- Otomatik scroll to bottom
+- Yeni mesajlarda scroll
+- Ref management
+
+## 📱 Responsive ve Accessibility
+
+### Features
+- ✅ Mobile responsive
+- ✅ Dark mode support
+- ✅ Keyboard navigation
+- ✅ Screen reader friendly
+- ✅ Touch gestures
+- ✅ High contrast support
+
+## 🚀 Geliştirme
+
+### Development Server
+```bash
+cd frontend
+npm run dev
+```
+
+### Backend Server
+```bash
+cd backend
+python app.py
+```
+
+### Build Production
+```bash
+cd frontend
+npm run build
+npm start
+```
+
+## 📋 Code Quality
+
+### ESLint Rules
+- Next.js best practices
+- TypeScript strict mode
+- Import organization
+- Unused code detection
+
+### File Naming Conventions
+- PascalCase for components
+- camelCase for hooks ve utilities
+- kebab-case for files
+- UPPER_CASE for constants
+
+## 🔮 Gelecek Geliştirmeler
+
+### Plananan Özellikler
+- [ ] Unit testler
+- [ ] Storybook integration
+- [ ] Performance monitoring
+- [ ] PWA desteği
+- [ ] Multi-language support
+- [ ] Voice input/output
+- [ ] File upload support
+
+Bu modüler yapı sayesinde proje daha maintainable, scalable ve developer-friendly hale gelmiştir.
