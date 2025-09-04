@@ -7,7 +7,7 @@ export const CHAT_CONFIG = {
 
 export const APP_CONFIG = {
   NAME: process.env.NEXT_PUBLIC_APP_NAME || 'Medical AI Assistant',
-  DESCRIPTION: process.env.NEXT_PUBLIC_APP_DESCRIPTION || 'Profesyonel tıbbi AI asistanınız. Sağlık sorularınızı sorun, tıbbi bilgi alın.',
+  DESCRIPTION: process.env.NEXT_PUBLIC_APP_DESCRIPTION || 'Your professional medical AI assistant. Ask your health questions and get medical information.',
 } as const;
 
 export const UI_CONFIG = {
@@ -31,9 +31,9 @@ export const ANIMATION_CONFIG = {
 } as const;
 
 export const MESSAGES = {
-  WELCOME: 'Merhaba! Ben Medical AI Asistanınızım. Size nasıl yardımcı olabilirim? Tıbbi sorularınızı sorabilir, sağlık konularında bilgi alabilirsiniz.',
-  ERROR: 'Üzgünüm, şu anda bir hata oluştu. Lütfen daha sonra tekrar deneyin.',
-  PLACEHOLDER: 'Tıbbi sorunuzu yazın...',
-  STATUS_ONLINE: 'Online - Size nasıl yardımcı olabilirim?',
-  DISCLAIMER: '⚠️ Bu AI asistan sadece bilgi amaçlıdır. Acil durumlar için mutlaka bir sağlık uzmanına başvurun.',
+  WELCOME: 'Hello! I am your Medical AI Assistant. How can I help you? You can ask medical questions and get health information.',
+  ERROR: 'Sorry, an error occurred right now. Please try again later.',
+  PLACEHOLDER: 'Type your medical question...',
+  STATUS_ONLINE: 'Online - How can I help you?',
+  DISCLAIMER: '⚠️ This AI assistant is for informational purposes only. For emergencies, please consult a healthcare professional.',
 } as const;

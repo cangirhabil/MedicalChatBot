@@ -21,15 +21,15 @@ export function ChatHeader() {
       <div className="flex items-center justify-center gap-4 mt-4">
         <Badge variant="secondary" className="flex items-center gap-1">
           <Shield className="w-3 h-3" />
-          Güvenli
+          Secure
         </Badge>
         <Badge variant="secondary" className="flex items-center gap-1">
           <Activity className="w-3 h-3" />
-          7/24 Aktif
+          24/7 Active
         </Badge>
         <Badge variant="secondary" className="flex items-center gap-1">
           <Heart className="w-3 h-3" />
-          Güvenilir
+          Reliable
         </Badge>
       </div>
     </div>

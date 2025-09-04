@@ -1,98 +1,98 @@
 # Medical AI ChatBot
 
-Modern ve profesyonel tıbbi AI chatbot uygulaması. Next.js, React, Shadcn/ui ile tasarlanmış frontend ve Flask tabanlı AI backend.
+Modern and professional medical AI chatbot application. Frontend designed with Next.js, React, Shadcn/ui and Flask-based AI backend.
 
-## 🚀 Özellikler
+## 🚀 Features
 
-- **Modern UI**: Next.js 15, React 18 ve Shadcn/ui ile tasarlanmış
-- **AI Destekli**: Google Gemini AI ile güçlendirilmiş
-- **Responsive**: Mobil ve masaüstü uyumlu tasarım
-- **Real-time**: Anlık sohbet deneyimi
-- **Güvenli**: CORS koruması ve güvenli API iletişimi
+- **Modern UI**: Designed with Next.js 15, React 18 and Shadcn/ui
+- **AI Powered**: Powered by Google Gemini AI
+- **Responsive**: Mobile and desktop compatible design
+- **Real-time**: Instant chat experience
+- **Secure**: CORS protection and secure API communication
 
-## 📋 Gereksinimler
+## 📋 Requirements
 
 - Node.js 18+ 
 - Python 3.10+
-- Conda (önerilen)
+- Conda (recommended)
 
-## 🛠️ Kurulum
+## 🛠️ Installation
 
-### Backend Kurulumu
+### Backend Installation
 
-1. Backend dizinine gidin:
+1. Go to backend directory:
 ```bash
 cd backend
 ```
 
-2. Conda environment oluşturun ve aktive edin:
+2. Create and activate conda environment:
 ```bash
 conda create -n medicalchatbot python=3.10
 conda activate medicalchatbot
 ```
 
-3. Gerekli paketleri yükleyin:
+3. Install required packages:
 ```bash
 pip install -r requirements.txt
 pip install flask-cors
 ```
 
-4. Environment variables dosyası oluşturun (`.env`):
+4. Create environment variables file (`.env`):
 ```bash
 PINECONE_API_KEY=your_pinecone_api_key
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-5. Backend'i başlatın:
+5. Start the backend:
 ```bash
 python app.py
 ```
 
-Backend http://localhost:8081 adresinde çalışacaktır.
+Backend will run on http://localhost:8081.
 
-### Frontend Kurulumu
+### Frontend Installation
 
-1. Frontend dizinine gidin:
+1. Go to frontend directory:
 ```bash
 cd frontend
 ```
 
-2. Dependencies'leri yükleyin:
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Development server'ı başlatın:
+3. Start development server:
 ```bash
 npm run dev
 ```
 
-Frontend http://localhost:3000 adresinde çalışacaktır.
+Frontend will run on http://localhost:3000.
 
-## 🎯 Kullanım
+## 🎯 Usage
 
-1. Backend ve frontend'i yukarıdaki adımları takip ederek çalıştırın
-2. Tarayıcıda http://localhost:3000 adresine gidin
-3. Chatbot ile tıbbi sorularınızı sorun!
+1. Run backend and frontend following the steps above
+2. Go to http://localhost:3000 in your browser
+3. Ask your medical questions to the chatbot!
 
-## 📁 Proje Yapısı
+## 📁 Project Structure
 
 ```
 MedicalChatBot/
 ├── backend/                 # Flask API backend
-│   ├── src/                # Source kodları
-│   ├── data/               # PDF verileri
-│   ├── app.py              # Ana Flask uygulaması
+│   ├── src/                # Source codes
+│   ├── data/               # PDF data
+│   ├── app.py              # Main Flask application
 │   └── requirements.txt    # Python dependencies
 ├── frontend/               # Next.js frontend
 │   ├── src/
 │   │   ├── app/           # App router
-│   │   └── components/    # React bileşenleri
+│   │   └── components/    # React components
 │   └── package.json       # Node.js dependencies
 └── README.md
 ```
 
-## 🔧 Teknolojiler
+## 🔧 Technologies
 
 ### Frontend
 - **Next.js 15**: React framework
@@ -108,19 +108,19 @@ MedicalChatBot/
 - **Pinecone**: Vector database
 - **Flask-CORS**: Cross-origin support
 
-## ⚠️ Önemli Notlar
+## ⚠️ Important Notes
 
-- Bu AI asistan sadece bilgi amaçlıdır
-- Acil durumlar için mutlaka bir sağlık uzmanına başvurun
-- API anahtarlarınızı güvende tutun
+- This AI assistant is for informational purposes only
+- For emergencies, please consult a healthcare professional
+- Keep your API keys secure
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
-3. Commit yapın (`git commit -m 'Add some AmazingFeature'`)
-4. Push yapın (`git push origin feature/AmazingFeature`)
-5. Pull Request açın
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📝 Lisans
 
