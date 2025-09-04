@@ -18,7 +18,7 @@ export default function ChatBot() {
 
   return (
     <Layout>
-      <ChatHeader />
+      {/* <ChatHeader /> */}
       
       <Card className={`${UI_CONFIG.CHAT_HEIGHT} shadow-xl border-0 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm`}>
         <ChatCardHeader />
