@@ -1,23 +1,23 @@
-# Medical ChatBot - Proje Refactoring Özeti
+# Medical ChatBot - Refactoring Summary
 
-## ✅ Tamamlanan İyileştirmeler
+## ✅ Improvements Completed
 
-### 🏗️ Frontend Modüler Yapısı
-- **Componentler ayrıldı**: Her component kendi dosyasında
-- **Hooks ayrıldı**: `useChat` ve `useAutoScroll` custom hooks
-- **Services ayrıldı**: API çağrıları `chatService`'e taşındı
-- **Types ayrıldı**: TypeScript tipları ayrı dosyada
-- **Constants ayrıldı**: Konfigürasyon sabitleri centralized
-- **Barrel exports**: Temiz import statements
+### 🏗️ Frontend Modular Structure
+- **Components separated**: Each component is in its own file
+- **Hooks separated**: Custom hooks such as `useChat` and `useAutoScroll`
+- **Services separated**: API calls moved to `chatService`
+- **Types separated**: TypeScript types placed in separate files
+- **Constants separated**: Configuration constants centralized
+- **Barrel exports**: Cleaner import statements
 
-### 🎨 Tailwind CSS Optimizasyonları
-- **Temiz CSS**: Gereksiz kodlar temizlendi
-- **Modular animasyonlar**: Custom animations ayrıldı
+### 🎨 Tailwind CSS Optimizations
+- **Clean CSS**: Removed unused styles
+- **Modular animations**: Custom animations organized separately
 - **Responsive design**: Mobile-first approach
-- **Dark mode**: Tam dark mode desteği
-- **Modern color palette**: oklch color space
+- **Dark mode**: Full dark mode support
+- **Modern color palette**: Using oklch color space
 
-### 📱 Proje Yapısı
+### 📱 Project Structure
 ```
 MedicalChatBot/
 ├── frontend/
@@ -40,37 +40,37 @@ MedicalChatBot/
     └── data/                 # Medical data
 ```
 
-### 🔧 Konfigürasyon İyileştirmeleri
-- **Environment variables**: `.env.local` dosyası eklendi
-- **Port coordination**: Frontend-backend port uyumu
-- **Type safety**: Full TypeScript desteği
+### 🔧 Configuration Improvements
+- **Environment variables**: Added `.env.local`
+- **Port coordination**: Frontend-backend port alignment
+- **Type safety**: Full TypeScript support on the frontend
 - **Error handling**: Improved error management
 
-### 📝 Kod Kalitesi
-- **Clean code principles**: SOLID principles uygulandı
-- **Single responsibility**: Her component tek sorumluluk
-- **DRY principle**: Kod tekrarları elimine edildi
-- **Consistent naming**: Tutarlı isimlendirme konvansiyonları
+### 📝 Code Quality
+- **Clean code principles**: Applied SOLID principles
+- **Single responsibility**: Each component has a single responsibility
+- **DRY principle**: Eliminated code duplication
+- **Consistent naming**: Established consistent naming conventions
 
-## 🚀 Çalıştırma
+## 🚀 Running the Project
 
 ### Frontend (http://localhost:3000)
-```bash
+```
 cd frontend
 npm run dev
 ```
 
 ### Backend (http://localhost:8081)
-```bash
+```
 cd backend
 conda activate medicalchatbot
 python app.py
 ```
 
-## 🎯 Avantajlar
+## 🎯 Benefits
 
 ### Developer Experience
-- ✅ Daha kolay debugging
+- ✅ Easier debugging
 - ✅ Faster development
 - ✅ Better code organization
 - ✅ Improved maintainability
@@ -87,35 +87,4 @@ python app.py
 - ✅ Reusable components
 - ✅ Clean imports
 
-## 🔮 Gelecek İyileştirmeler
-
-### Immediate Next Steps
-- [ ] Unit tests ekleme
-- [ ] Performance optimization
-- [ ] Error boundary implementation
-- [ ] Loading states improvement
-
-### Long-term Goals
-- [ ] Storybook integration
-- [ ] PWA support
-- [ ] Multi-language
-- [ ] Voice interface
-- [ ] File upload
-
-## 📊 Metrikler
-
-### Before Refactoring
-- Single 256-line component
-- Mixed concerns
-- Inline styles
-- No type safety
-- Hard to maintain
-
-### After Refactoring
-- 15+ modular components
-- Separated concerns
-- Tailwind CSS
-- Full TypeScript
-- Easy to maintain
-
-Bu refactoring ile proje çok daha professional, maintainable ve scalable hale geldi!
+This refactoring makes the project more professional, maintainable, and scalable.

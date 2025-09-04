@@ -1,24 +1,24 @@
 # Medical ChatBot - Modular Frontend Structure
 
-Bu proje, Tailwind CSS kullanarak temiz ve modüler bir yapıda yeniden düzenlenmiştir.
+This project has been refactored into a clean, modular structure using Tailwind CSS.
 
 ## 📁 Proje Yapısı
 
-### Frontend Klasör Organizasyonu
+### Frontend Folder Organization
 
 ```
 frontend/
 ├── src/
 │   ├── app/                 # Next.js app directory
-│   │   ├── globals.css      # Global styles ve Tailwind konfigürasyonu
-│   │   ├── layout.tsx       # Ana layout
-│   │   └── page.tsx         # Ana sayfa
-│   ├── components/          # Tüm React componentleri
-│   │   ├── ui/              # Shadcn/ui base componentleri
-│   │   ├── common/          # Ortak kullanılan componentler
-│   │   │   ├── Layout.tsx   # Ana layout wrapper
+│   │   ├── globals.css      # Global styles and Tailwind configuration
+│   │   ├── layout.tsx       # Main layout
+│   │   └── page.tsx         # Main page
+│   ├── components/          # All React components
+│   │   ├── ui/              # Shadcn/ui base components
+│   │   ├── common/          # Shared components
+│   │   │   ├── Layout.tsx   # Main layout wrapper
 │   │   │   └── index.ts     # Export barrel
-│   │   ├── chat/            # Chat ile ilgili tüm componentler
+│   │   ├── chat/            # Chat related components
 │   │   │   ├── ChatHeader.tsx
 │   │   │   ├── ChatCardHeader.tsx
 │   │   │   ├── MessageItem.tsx
@@ -27,55 +27,55 @@ frontend/
 │   │   │   ├── ChatInput.tsx
 │   │   │   ├── ChatFooter.tsx
 │   │   │   └── index.ts     # Export barrel
-│   │   └── ChatBot.tsx      # Ana chat component
+│   │   └── ChatBot.tsx      # Main chat component
 │   ├── hooks/               # Custom React hooks
-│   │   ├── useChat.ts       # Chat state yönetimi
-│   │   ├── useAutoScroll.ts # Otomatik scroll işlevi
+│   │   ├── useChat.ts       # Chat state management
+│   │   ├── useAutoScroll.ts # Auto scroll hook
 │   │   └── index.ts         # Export barrel
-│   ├── services/            # API ve external servisler
-│   │   └── chatService.ts   # Chat API servisi
+│   ├── services/            # API and external services
+│   │   └── chatService.ts   # Chat API service
 │   ├── types/               # TypeScript type definitions
-│   │   └── chat.ts          # Chat ile ilgili tipler
-│   ├── constants/           # Sabitler ve konfigürasyon
-│   │   └── config.ts        # Uygulama konfigürasyonu
-│   └── lib/                 # Utility fonksiyonları
-│       └── utils.ts         # Genel utility fonksiyonları
+│   │   └── chat.ts          # Types for chat
+│   ├── constants/           # Constants and configuration
+│   │   └── config.ts        # Application configuration
+│   └── lib/                 # Utility functions
+│       └── utils.ts         # General utilities
 └── .env.local               # Environment variables
 ```
 
-## 🏗️ Modüler Yapının Avantajları
+## 🏗️ Benefits of the Modular Structure
 
-### 1. **Temiz Kod Organizasyonu**
-- Her component kendi dosyasında
-- İlgili componentler aynı klasörde gruplanmış
-- Barrel exports ile temiz import statements
+### 1. Clean Code Organization
+- Each component in its own file
+- Related components grouped together
+- Barrel exports for clean imports
 
-### 2. **Yeniden Kullanılabilirlik**
-- Componentler birbirinden bağımsız
-- Hook'lar farklı componentlerde kullanılabilir
-- Servisler centralized
+### 2. Reusability
+- Components are independent
+- Hooks can be reused across components
+- Services are centralized
 
-### 3. **Tip Güvenliği**
-- TypeScript ile tam tip desteği
-- Interface'ler ayrı dosyalarda
-- Compile-time hata yakalama
+### 3. Type Safety
+- Full type support with TypeScript
+- Interfaces in separate files
+- Compile-time error detection
 
-### 4. **Maintainability**
-- Kolay debug etme
-- Kolay test yazma
-- Kolay refactoring
+### 4. Maintainability
+- Easier debugging
+- Simpler test writing
+- Easier refactoring
 
 ## 🎨 Tailwind CSS Kullanımı
 
 ### Design System
-- **Color Palette**: Modern oklch color space kullanımı
-- **Dark Mode**: Otomatik tema değişimi
+- **Color Palette**: Modern oklch color space usage
+- **Dark Mode**: Automatic theme switching
 - **Typography**: Geist font family
 - **Spacing**: Consistent spacing scale
 
 ### Component Styling
 ```tsx
-// Örnek: MessageItem component
+// Example: MessageItem component
 <div className={`
   ${UI_CONFIG.MAX_MESSAGE_WIDTH} 
   rounded-2xl px-4 py-3 
@@ -92,20 +92,20 @@ frontend/
 - Flexible layouts
 - Touch-friendly interface
 
-## 🔧 Konfigürasyon
+## 🔧 Configuration
 
 ### Environment Variables
 ```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8081
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
 NEXT_PUBLIC_API_ENDPOINT=/get
 NEXT_PUBLIC_APP_NAME="Medical AI Assistant"
-NEXT_PUBLIC_APP_DESCRIPTION="Profesyonel tıbbi AI asistanınız"
+NEXT_PUBLIC_APP_DESCRIPTION="Your professional medical AI assistant"
 ```
 
 ### Constants
 ```typescript
 export const CHAT_CONFIG = {
-  API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8081',
+  API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080',
   CHAT_ENDPOINT: process.env.NEXT_PUBLIC_API_ENDPOINT || '/get',
   MAX_MESSAGE_LENGTH: 1000,
 } as const;
@@ -114,17 +114,17 @@ export const CHAT_CONFIG = {
 ## 🎯 Custom Hooks
 
 ### useChat Hook
-- Message state yönetimi
-- API çağrıları
+- Message state management
+- API calls
 - Error handling
 - Loading states
 
 ### useAutoScroll Hook
-- Otomatik scroll to bottom
-- Yeni mesajlarda scroll
+- Automatic scroll to bottom
+- Scroll on new messages
 - Ref management
 
-## 📱 Responsive ve Accessibility
+## 📱 Responsive and Accessibility
 
 ### Features
 - ✅ Mobile responsive
@@ -165,19 +165,19 @@ npm start
 
 ### File Naming Conventions
 - PascalCase for components
-- camelCase for hooks ve utilities
+- camelCase for hooks and utilities
 - kebab-case for files
 - UPPER_CASE for constants
 
 ## 🔮 Gelecek Geliştirmeler
 
-### Plananan Özellikler
-- [ ] Unit testler
+### Planned Features
+- [ ] Unit tests
 - [ ] Storybook integration
 - [ ] Performance monitoring
-- [ ] PWA desteği
+- [ ] PWA support
 - [ ] Multi-language support
 - [ ] Voice input/output
 - [ ] File upload support
 
-Bu modüler yapı sayesinde proje daha maintainable, scalable ve developer-friendly hale gelmiştir.
+This modular structure makes the project more maintainable, scalable and developer-friendly.

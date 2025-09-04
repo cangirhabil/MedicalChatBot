@@ -1,5 +1,5 @@
 export const CHAT_CONFIG = {
-  API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8081',
+  API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080',
   CHAT_ENDPOINT: process.env.NEXT_PUBLIC_API_ENDPOINT || '/get',
   MAX_MESSAGE_LENGTH: 1000,
   SCROLL_BEHAVIOR: 'smooth' as const,

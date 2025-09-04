@@ -20,23 +20,10 @@ Modern and professional medical AI chatbot application. Frontend designed with N
 
 ### Backend Installation
 
-1. Go to backend directory:
-```bash
-cd backend
-```
-
 2. Create and activate conda environment:
-```bash
-conda create -n medicalchatbot python=3.10
-conda activate medicalchatbot
-```
-
 3. Install required packages:
 ```bash
 pip install -r requirements.txt
-pip install flask-cors
-```
-
 4. Create environment variables file (`.env`):
 ```bash
 PINECONE_API_KEY=your_pinecone_api_key
@@ -47,12 +34,12 @@ GEMINI_API_KEY=your_gemini_api_key
 ```bash
 python app.py
 ```
+This project is distributed under the MIT License.
+Backend will run on http://localhost:8080.
 
-Backend will run on http://localhost:8081.
+For questions or contributions, please open an issue in the repository.
 
-### Frontend Installation
-
-1. Go to frontend directory:
+This project provides medical information for educational purposes and does not replace professional medical advice.
 ```bash
 cd frontend
 ```

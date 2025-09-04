@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Medical AI ChatBot - Tıbbi AI Asistanı",
-  description: "Profesyonel tıbbi AI asistanınız ile sağlık sorularınıza anında cevap alın. Güvenli, hızlı ve güvenilir tıbbi bilgi platformu.",
-  keywords: ["tıbbi ai", "sağlık asistanı", "chatbot", "medical ai", "health assistant"],
+  title: "Medical AI ChatBot - Medical AI Assistant",
+  description: "Get instant answers to your health questions from a professional medical AI assistant. Secure, fast and reliable medical information platform.",
+  keywords: ["medical ai", "health assistant", "chatbot", "medical ai", "health assistant"],
 };
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr">
+  <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
