@@ -1,6 +1,6 @@
 # Medical AI ChatBot
 
-Modern medical AI chatbot with a Next.js (App Router) frontend and a FastAPI backend. Uses LangChain with Google Gemini and Pinecone for RAG, plus PDF ingestion via sentence-transformers.
+Modern medical AI chatbot with a Next.js frontend and a FastAPI backend. Uses LangChain with Google Gemini and Pinecone for RAG, plus PDF ingestion via sentence-transformers.
 
 # Frontend — Technologies & Installation
 
@@ -207,3 +207,5 @@ npm run build
 docker-compose build
 make start
 ```
+
+See `DOCKER.md` for detailed documentation.
