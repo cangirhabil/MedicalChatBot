@@ -49,7 +49,7 @@ Notes
 -------------------------------------
 
 
-# Medical ChatBot API - FastAPI Backend
+# Backend — Technologies & Installation
 
 ## Technologies
 
