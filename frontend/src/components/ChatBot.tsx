@@ -18,24 +18,17 @@ export default function ChatBot() {
   return (
     <Layout>
       {/* <ChatHeader /> */}
-      
-      <Card className={`${UI_CONFIG.CHAT_HEIGHT} shadow-xl border-0 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm`}>
-        <ChatCardHeader />
-        
-        <CardContent className="p-0">
-          <MessageList 
-            messages={messages} 
-            isLoading={isLoading} 
-            scrollAreaRef={scrollAreaRef} 
-          />
-        </CardContent>
+      <ChatCardHeader />
+      <Card
+        className={`${UI_CONFIG.CHAT_HEIGHT} shadow-xl border-0 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm`}
+      >
+        <MessageList
+          messages={messages}
+          isLoading={isLoading}
+          scrollAreaRef={scrollAreaRef}
+        />
 
-        <CardFooter className="p-0">
-          <ChatInput 
-            onSendMessage={sendMessage} 
-            isLoading={isLoading} 
-          />
-        </CardFooter>
+        <ChatInput onSendMessage={sendMessage} isLoading={isLoading} />
       </Card>
 
       <ChatFooter />
