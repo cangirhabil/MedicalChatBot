@@ -1,7 +1,5 @@
 # Medical ChatBot API - FastAPI Backend
 
-Minimal reference: technologies used and installation steps to run the backend.
-
 ## Technologies
 
 - FastAPI (0.115.0)
