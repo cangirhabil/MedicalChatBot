@@ -101,22 +101,67 @@ MedicalChatBot/
 
 ## 🔧 Teknolojiler
 
-### Frontend
-- **Next.js 15**: React framework
-- **React 19**: UI library
-- **TypeScript**: Tip güvenliği
-- **Tailwind CSS**: Styling
-- **Shadcn/ui**: UI bileşenleri
-- **Radix UI**: Erişilebilir bileşenler
-- **Lucide React**: İkonlar
+### Frontend Stack
+- **Next.js 15.5.2**: React framework with App Router
+- **React 19.1.0**: UI library
+- **TypeScript 5**: Type safety and development experience
+- **Tailwind CSS 4**: Utility-first CSS framework
+- **Shadcn/ui**: Modern UI components built on Radix UI
+- **Radix UI**: Accessible, unstyled UI primitives
+  - `@radix-ui/react-avatar`: Avatar component
+  - `@radix-ui/react-scroll-area`: Custom scrollbar
+  - `@radix-ui/react-slot`: Component composition
+- **Lucide React 0.542.0**: Beautiful icon library
+- **Class Variance Authority**: Component variant utilities
+- **clsx**: Conditional CSS classes
+- **Tailwind Merge**: Tailwind CSS class merging
+- **date-fns**: Modern JavaScript date utility library
 
-### Backend
-- **FastAPI**: Modern web framework
-- **LangChain**: AI framework
-- **Google Gemini**: AI model
-- **Pinecone**: Vector database
-- **Pydantic**: Data validation
-- **Uvicorn**: ASGI server
+### Development Tools (Frontend)
+- **ESLint 9**: Code linting
+- **TypeScript**: Type definitions for Node.js, React, React DOM
+- **PostCSS**: CSS processing
+- **Turbopack**: Fast bundler for Next.js
+
+### Backend Stack
+- **FastAPI 0.115.0**: Modern, fast web framework for building APIs
+- **Uvicorn 0.32.0**: ASGI web server implementation
+- **Python 3.10+**: Programming language
+
+### AI & Machine Learning
+- **LangChain 0.3.26**: Framework for developing applications powered by LLMs
+- **LangChain Google GenAI 2.0.6**: Google Generative AI integration
+- **LangChain Pinecone 0.2.8**: Pinecone vector database integration
+- **LangChain Community 0.3.26**: Community integrations
+- **Sentence Transformers 4.1.0**: Text embeddings
+- **Google Gemini AI**: Large language model
+- **Pinecone**: Vector database for similarity search
+
+### Data Processing
+- **PyPDF 5.6.1**: PDF document processing
+- **Python Multipart 0.0.12**: Multipart form data handling
+
+### Configuration & Environment
+- **Pydantic 2.10.2**: Data validation and settings management
+- **Pydantic Settings 2.6.1**: Settings management
+- **python-dotenv 1.1.0**: Environment variable loading
+
+### Development Tools (Backend)
+- **Conda**: Environment management
+- **Docker**: Containerization
+- **Git**: Version control
+
+### Infrastructure
+- **Pinecone**: Vector database service
+- **Google AI Studio**: AI model hosting
+- **Local Development**: Hot reload with auto-restart
+
+### Architecture Patterns
+- **RAG (Retrieval-Augmented Generation)**: AI pattern for document-based Q&A
+- **Modular Architecture**: Clean separation of concerns
+- **RESTful API**: Standard API design
+- **Dependency Injection**: Service layer pattern
+- **Type Safety**: Full type hints in Python, TypeScript interfaces
 
 ## 📡 API Endpoints
 
