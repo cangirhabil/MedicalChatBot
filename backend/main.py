@@ -1,6 +1,7 @@
 """
 FastAPI Medical ChatBot Application
 """
+from contextlib import asynccontextmanager
 from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,13 +24,30 @@ logger = get_logger(__name__)
 # Get settings
 settings = get_settings()
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Application lifespan event handler
+    """
+    # Startup
+    logger.info(f"Starting {settings.app_name} v{settings.version}")
+    logger.info(f"Debug mode: {settings.debug}")
+    
+    yield
+    
+    # Shutdown
+    logger.info("Shutting down Medical ChatBot API")
+
+
 # Create FastAPI app
 app = FastAPI(
     title=settings.app_name,
     description="AI-powered medical assistant API using FastAPI and LangChain",
     version=settings.version,
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    lifespan=lifespan
 )
 
 # Configure CORS
@@ -77,21 +95,6 @@ async def health_check():
             "timestamp": datetime.now().isoformat()
         }
     )
-
-
-# Startup event
-@app.on_event("startup")
-async def startup_event():
-    """Application startup event"""
-    logger.info(f"Starting {settings.app_name} v{settings.version}")
-    logger.info(f"Debug mode: {settings.debug}")
-
-
-# Shutdown event
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Application shutdown event"""
-    logger.info("Shutting down Medical ChatBot API")
 
 
 if __name__ == "__main__":
