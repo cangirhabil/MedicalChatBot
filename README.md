@@ -161,8 +161,8 @@ make clean     # Cleanup
 Create `.env` files:
 
 ```bash
-cp backend/.env.example backend/.env
-cp frontend/.env.local.example frontend/.env.local
+cp backend/.env
+cp frontend/.env
 ```
 
 Edit `backend/.env` with your API keys:
@@ -172,4 +172,38 @@ PINECONE_API_KEY=your_key
 GOOGLE_API_KEY=your_key
 ```
 
-See `DOCKER.md` for detailed documentation.
+## Troubleshooting
+
+### Common Issues
+
+**Docker health check fails:**
+```bash
+# Check container logs
+make logs
+docker-compose logs backend --tail=20
+
+# Rebuild and restart
+docker-compose build backend
+docker-compose up -d backend
+```
+
+**Port already in use:**
+```bash
+# Find and kill process
+sudo lsof -i :8080 -i :3000
+make stop
+```
+
+**ESLint build errors (frontend):**
+```bash
+# Fix unused imports and types
+cd frontend
+npm run build
+```
+
+**Module not found errors:**
+```bash
+# Rebuild Docker images
+docker-compose build
+make start
+```
