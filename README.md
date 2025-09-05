@@ -1,113 +1,141 @@
 # Medical AI ChatBot
 
-Modern and professional medical AI chatbot application. Frontend designed with Next.js, React, Shadcn/ui and Flask-based AI backend.
+Modern tıbbi AI chatbot uygulaması. Next.js 15 frontend ve FastAPI backend ile geliştirilmiştir.
 
-## 🚀 Features
+## 🚀 Özellikler
 
-- **Modern UI**: Designed with Next.js 15, React 18 and Shadcn/ui
-- **AI Powered**: Powered by Google Gemini AI
-- **Responsive**: Mobile and desktop compatible design
-- **Real-time**: Instant chat experience
-- **Secure**: CORS protection and secure API communication
+- **Modern UI**: Next.js 15, React 19 ve Shadcn/ui ile tasarlandı
+- **AI Güçlendirmesi**: Google Gemini AI ile desteklenir
+- **Responsive**: Mobil ve masaüstü uyumlu tasarım
+- **Gerçek Zamanlı**: Anlık sohbet deneyimi
+- **Güvenli**: CORS koruması ve güvenli API iletişimi
+- **Type Safety**: Full TypeScript desteği
 
-## 📋 Requirements
+## 📋 Gereksinimler
 
-- Node.js 18+ 
+- Node.js 18+
 - Python 3.10+
-- Conda (recommended)
+- Conda (önerilir)
 
-## 🛠️ Installation
+## 🛠️ Kurulum
 
-### Backend Installation
+### Backend Kurulumu
 
-2. Create and activate conda environment:
-3. Install required packages:
 ```bash
+cd backend
+conda create -n medicalchatbot python=3.10 -y
+conda activate medicalchatbot
 pip install -r requirements.txt
-4. Create environment variables file (`.env`):
-```bash
+```
+
+### Environment Variables
+
+`.env` dosyası oluşturun:
+
+```env
 PINECONE_API_KEY=your_pinecone_api_key
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-5. Start the backend:
+### Vector Database Kurulumu
+
 ```bash
-python app.py
+python -m utils.vector_store
 ```
-This project is distributed under the MIT License.
-Backend will run on http://localhost:8080.
 
-For questions or contributions, please open an issue in the repository.
+### Backend Başlatma
 
-This project provides medical information for educational purposes and does not replace professional medical advice.
+```bash
+./start.sh
+```
+
+Backend http://localhost:8080 adresinde çalışacaktır.
+
+### Frontend Kurulumu
+
 ```bash
 cd frontend
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
-
-3. Start development server:
-```bash
 npm run dev
 ```
 
-Frontend will run on http://localhost:3000.
+Frontend http://localhost:3000 adresinde çalışacaktır.
 
-## 🎯 Usage
+## 🎯 Kullanım
 
-1. Run backend and frontend following the steps above
-2. Go to http://localhost:3000 in your browser
-3. Ask your medical questions to the chatbot!
+1. Backend ve frontend'i yukarıdaki adımlara göre çalıştırın
+2. Tarayıcınızda http://localhost:3000 adresine gidin
+3. Chatbot'a tıbbi sorularınızı sorun!
 
-## 📁 Project Structure
+## 📁 Proje Yapısı
 
 ```
 MedicalChatBot/
-├── backend/                 # Flask API backend
-│   ├── src/                # Source codes
-│   ├── data/               # PDF data
-│   ├── app.py              # Main Flask application
-│   └── requirements.txt    # Python dependencies
+├── backend/                 # FastAPI backend
+│   ├── api/                # API endpoints
+│   │   ├── chat.py        # Ana chat endpoint'leri
+│   │   └── legacy.py      # Geriye uyumluluk
+│   ├── core/               # Konfigürasyon
+│   │   ├── config.py      # Uygulama ayarları
+│   │   └── logging.py     # Log konfigürasyonu
+│   ├── models/             # Pydantic modeller
+│   │   └── chat.py        # Chat modelleri
+│   ├── services/           # İş mantığı
+│   │   └── chat_service.py # Chat servisi
+│   ├── utils/              # Yardımcı araçlar
+│   │   └── vector_store.py # Vector database yönetimi
+│   ├── src/                # Yardımcı fonksiyonlar
+│   │   ├── helper.py      # Döküman işleme
+│   │   └── prompt.py      # Prompt şablonları
+│   └── data/               # PDF verileri
 ├── frontend/               # Next.js frontend
 │   ├── src/
 │   │   ├── app/           # App router
-│   │   └── components/    # React components
-│   └── package.json       # Node.js dependencies
+│   │   ├── components/    # React bileşenleri
+│   │   ├── hooks/         # Custom hooks
+│   │   ├── services/      # API servisleri
+│   │   └── types/         # TypeScript tipleri
+│   └── package.json       # Node.js bağımlılıkları
 └── README.md
 ```
 
-## 🔧 Technologies
+## 🔧 Teknolojiler
 
 ### Frontend
 - **Next.js 15**: React framework
-- **TypeScript**: Type safety
+- **React 19**: UI library
+- **TypeScript**: Tip güvenliği
 - **Tailwind CSS**: Styling
-- **Shadcn/ui**: UI components
-- **Lucide React**: Icons
+- **Shadcn/ui**: UI bileşenleri
+- **Radix UI**: Erişilebilir bileşenler
+- **Lucide React**: İkonlar
 
 ### Backend
-- **Flask**: Web framework
+- **FastAPI**: Modern web framework
 - **LangChain**: AI framework
 - **Google Gemini**: AI model
 - **Pinecone**: Vector database
-- **Flask-CORS**: Cross-origin support
+- **Pydantic**: Data validation
+- **Uvicorn**: ASGI server
 
-## ⚠️ Important Notes
+## 📡 API Endpoints
 
-- This AI assistant is for informational purposes only
-- For emergencies, please consult a healthcare professional
-- Keep your API keys secure
+### Ana Endpoints
+- `GET /` - Health check
+- `POST /api/chat/` - Chat endpoint
+- `GET /api/chat/health` - Chat service health
+- `GET /docs` - Swagger UI
+- `GET /redoc` - ReDoc
 
-## 🤝 Contributing
+### Legacy Endpoints
+- `POST /get` - Flask uyumlu chat endpoint
+- `GET /get` - Flask uyumlu chat endpoint
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## ⚠️ Önemli Notlar
+
+- Bu AI asistanı sadece bilgilendirme amaçlıdır
+- Acil durumlarda lütfen sağlık profesyoneline danışınız
+- API anahtarlarınızı güvenli tutunuz
 
 ## 📝 Lisans
 
