@@ -3,7 +3,6 @@
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Layout } from '@/components/common';
 import { 
-  ChatHeader, 
   ChatCardHeader, 
   MessageList, 
   ChatInput, 

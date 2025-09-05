@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import type { Message } from '@/types/chat';
 import { chatService } from '@/services/chatService';
 import { MESSAGES } from '@/constants/config';

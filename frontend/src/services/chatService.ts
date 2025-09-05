@@ -1,5 +1,4 @@
 import { CHAT_CONFIG } from '@/constants/config';
-import type { ChatResponse, ChatError } from '@/types/chat';
 
 class ChatService {
   private baseUrl: string;
