@@ -45,9 +45,11 @@ Notes
 - Ensure the backend API is running at the URL set in `NEXT_PUBLIC_API_BASE_URL` before using the frontend.
 - For production builds, run `npm run build` and `npm start`.
 
----
 
-# Medical ChatBot API - FastAPI Backend
+-------------------------------------
+
+
+# Backend — Technologies & Installation
 
 ## Technologies
 
@@ -119,7 +121,12 @@ docker run -p 8080:8080 --env-file .env medical-chatbot-api
 - ReDoc: http://localhost:8080/redoc
 - Health check: `GET /`
 
----
+
+
+
+-------------------------------------
+
+
 
 # 🐳 Docker Deployment
 
