@@ -26,7 +26,7 @@ cd frontend
 npm install
 ```
 
-2. Create `.env.local` (example)
+2. Create `.env` (example)
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
