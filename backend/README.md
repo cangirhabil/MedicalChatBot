@@ -50,11 +50,6 @@ backend/
 conda create -n medicalchatbot python=3.10 -y
 conda activate medicalchatbot
 
-# Or use venv
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
 ### 2. Install Dependencies
 
 ```bash

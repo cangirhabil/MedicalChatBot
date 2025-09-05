@@ -9,7 +9,7 @@ export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 # Check if virtual environment exists
 if [ -d "venv" ]; then
     echo "Activating virtual environment..."
-    source venv/bin/activate
+    conda activate medicalchatbot
 fi
 
 # Install/upgrade dependencies
