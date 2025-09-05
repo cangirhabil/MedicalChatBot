@@ -1,6 +1,6 @@
 # Medical AI ChatBot
-Modern medical AI chatbot with a Next.js (App Router) frontend and a FastAPI backend. Uses LangChain with Google Gemini and Pinecone for RAG, plus PDF ingestion via sentence-transformers.
 
+Modern medical AI chatbot with a Next.js (App Router) frontend and a FastAPI backend. Uses LangChain with Google Gemini and Pinecone for RAG, plus PDF ingestion via sentence-transformers.
 
 # Frontend — Technologies & Installation
 
@@ -45,9 +45,7 @@ Notes
 - Ensure the backend API is running at the URL set in `NEXT_PUBLIC_API_BASE_URL` before using the frontend.
 - For production builds, run `npm run build` and `npm start`.
 
-
--------------------------------------
-
+---
 
 # Medical ChatBot API - FastAPI Backend
 
@@ -66,10 +64,9 @@ Notes
 - python-dotenv (1.1.0)
 - PyPDF (5.6.1)
 
-
 ## Installation & Run
 
-1) Create and activate a Python environment (conda recommended):
+1. Create and activate a Python environment (conda recommended):
 
 ```bash
 cd backend
@@ -77,26 +74,26 @@ conda create -n medicalchatbot python=3.10 -y
 conda activate medicalchatbot
 ```
 
-2) Install Python dependencies:
+2. Install Python dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3) Create a `.env` file in the `backend/` directory with your keys:
+3. Create a `.env` file in the `backend/` directory with your keys:
 
 ```env
 PINECONE_API_KEY=your_pinecone_api_key
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-4) (Optional) Initialize or populate the vector index if needed:
+4. (Optional) Initialize or populate the vector index if needed:
 
 ```bash
 python -m utils.vector_store
 ```
 
-5) Start the server (development):
+5. Start the server (development):
 
 ```bash
 # using the startup script
@@ -107,7 +104,7 @@ chmod +x start.sh
 uvicorn main:app --host 0.0.0.0 --port 8080 --reload
 ```
 
-6) Docker (optional):
+6. Docker (optional):
 
 ```bash
 # build
@@ -121,3 +118,58 @@ docker run -p 8080:8080 --env-file .env medical-chatbot-api
 - Swagger UI: http://localhost:8080/docs
 - ReDoc: http://localhost:8080/redoc
 - Health check: `GET /`
+
+---
+
+# 🐳 Docker Deployment
+
+## Quick Start
+
+```bash
+# Setup environment
+make setup
+
+# Start production
+make start
+
+# Start development (hot reload)
+make dev
+
+# View status
+make status
+```
+
+## Service URLs
+
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8080
+- API Docs: http://localhost:8080/docs
+
+## Commands
+
+```bash
+make start     # Production mode
+make dev       # Development mode
+make stop      # Stop services
+make logs      # View logs
+make health    # Health check
+make clean     # Cleanup
+```
+
+## Configuration
+
+Create `.env` files:
+
+```bash
+cp backend/.env.example backend/.env
+cp frontend/.env.local.example frontend/.env.local
+```
+
+Edit `backend/.env` with your API keys:
+
+```env
+PINECONE_API_KEY=your_key
+GOOGLE_API_KEY=your_key
+```
+
+See `DOCKER.md` for detailed documentation.
