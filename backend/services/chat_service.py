@@ -2,7 +2,6 @@
 Chat service containing business logic for the medical chatbot
 """
 from typing import Dict, Any, Optional
-from langchain_pinecone import PineconeVectorStore
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -10,7 +9,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from core.config import get_settings
 from core.logging import get_logger
-from src.helper import download_embeddings
+from utils.vector_store import VectorStoreManager
 from src.prompt import system_prompt
 
 logger = get_logger(__name__)
@@ -29,14 +28,11 @@ class ChatService:
         try:
             logger.info("Initializing chat service components...")
             
-            # Initialize embeddings
-            self.embedding = download_embeddings()
+            # Initialize vector store manager
+            self.vector_manager = VectorStoreManager()
             
-            # Initialize vector store
-            self.doc_search = PineconeVectorStore.from_existing_index(
-                embedding=self.embedding,
-                index_name=self.settings.index_name
-            )
+            # Get vector store
+            self.doc_search = self.vector_manager.get_vector_store()
             
             # Initialize retriever
             self.retriever = self.doc_search.as_retriever(

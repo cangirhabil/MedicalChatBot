@@ -5,7 +5,6 @@ from contextlib import asynccontextmanager
 from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 
 from core.config import get_settings
@@ -53,9 +52,9 @@ app = FastAPI(
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure this properly for production
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],  # Frontend URLs
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -81,19 +80,6 @@ async def root() -> HealthCheck:
         status="healthy",
         version=settings.version,
         timestamp=datetime.now().isoformat()
-    )
-
-
-@app.get("/health")
-async def health_check():
-    """Simple health check endpoint"""
-    return JSONResponse(
-        status_code=200,
-        content={
-            "status": "healthy",
-            "version": settings.version,
-            "timestamp": datetime.now().isoformat()
-        }
     )
 
 
