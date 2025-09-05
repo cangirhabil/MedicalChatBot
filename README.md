@@ -32,6 +32,8 @@ npm install
 NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
 NEXT_PUBLIC_API_ENDPOINT=/get
 NEXT_PUBLIC_APP_NAME="Medical AI Assistant"
+NEXT_PUBLIC_APP_DESCRIPTION="Your professional medical AI assistant"
+# Sentry Configuration
 ```
 
 3. Start development server
