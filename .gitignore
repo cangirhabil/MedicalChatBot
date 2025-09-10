@@ -180,7 +180,7 @@ pnpm-lock.yaml
 # ===================
 
 # Docker
-.dockerignore
+#.dockerignore
 docker-compose.override.yml
 
 # ===================
