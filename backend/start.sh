@@ -15,6 +15,19 @@ fi
 # Set Python path
 export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 
+# Ensure external start.py is executable
+TARGET="/Users/admin/Desktop/MedicalChatBot/start.py"
+if [ -f "$TARGET" ]; then
+    if [ ! -x "$TARGET" ]; then
+        echo "🔐 Granting execute permission to $TARGET"
+        chmod +x "$TARGET"
+    else
+        echo "🔐 Execute permission already set for $TARGET"
+    fi
+else
+    echo "ℹ️  Note: $TARGET not found, skipping chmod."
+fi
+
 # Check environment
 if command -v conda &> /dev/null; then
     echo "📦 Activating conda environment 'medicalchatbot'..."
