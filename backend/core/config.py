@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     version: str = "1.0.0"
     debug: bool = False
     host: str = "0.0.0.0"
-    port: int = 8080
+    port: int = int(os.getenv("PORT", 8080))  # Render uses PORT env var
     
     # External API Keys
     pinecone_api_key: Optional[str] = None

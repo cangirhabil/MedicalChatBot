@@ -44,8 +44,7 @@ async def chat_endpoint(
         
         # Return structured response
         return ChatResponse(
-            answer=result["answer"],
-            context_used=result.get("context_used", [])
+            response=result["answer"]
         )
         
     except Exception as e:
