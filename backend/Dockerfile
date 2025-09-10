@@ -1,6 +1,5 @@
-# Multi-stage build for Medical ChatBot Backend
-# Stage 1: Base Python image with dependencies
-FROM python:3.11-slim as base
+# Production Dockerfile for Medical ChatBot Backend
+FROM python:3.11-slim
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
@@ -12,6 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user
@@ -20,42 +20,20 @@ RUN useradd --create-home --shell /bin/bash app
 # Set work directory
 WORKDIR /app
 
-# Install Python dependencies
+# Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Stage 2: Development image
-FROM base as development
-
 # Copy source code
 COPY --chown=app:app . .
+
+# Create uploads directory
+RUN mkdir -p uploads && chown app:app uploads
 
 # Switch to non-root user
 USER app
 
-# Expose port
-EXPOSE 8080
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8080/ || exit 1
-
-# Start command
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
-
-# Stage 3: Production image
-FROM base as production
-
-# Install curl for healthcheck
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
-
-# Copy source code
-COPY --chown=app:app . .
-
-# Switch to non-root user
-USER app
-
-# Expose port
+# Expose port (Render uses PORT environment variable)
 EXPOSE 8080
 
 # Health check
@@ -63,4 +41,4 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8080/ || exit 1
 
 # Start command for production
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--workers", "4"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--workers", "2"]

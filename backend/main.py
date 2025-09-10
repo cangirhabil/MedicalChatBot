@@ -1,6 +1,7 @@
 """
 FastAPI Medical ChatBot Application
 """
+import os
 from contextlib import asynccontextmanager
 from datetime import datetime
 from fastapi import FastAPI
@@ -50,11 +51,24 @@ app = FastAPI(
 )
 
 # Configure CORS
+allowed_origins = [
+    "http://localhost:3000", 
+    "http://127.0.0.1:3000",
+    "https://*.vercel.app",  # Vercel preview URLs
+    "https://your-frontend-domain.vercel.app",  # Replace with your actual domain
+]
+
+# Add environment-based origins
+if not settings.debug:
+    # Production origins from environment
+    env_origins = os.getenv("ALLOWED_ORIGINS", "").split(",")
+    allowed_origins.extend([origin.strip() for origin in env_origins if origin.strip()])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],  # Frontend URLs
+    allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 

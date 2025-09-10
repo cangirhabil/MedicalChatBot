@@ -3,18 +3,19 @@ services:
   backend:
     build:
       context: ./backend
-      target: production
     container_name: medical-chatbot-api
     ports:
       - "8080:8080"
     environment:
-      - NODE_ENV=production
       - PYTHONPATH=/app
+      - PORT=8080
     env_file:
       - ./backend/.env
     volumes:
       # Mount data directory for PDF files
       - ./backend/data:/app/data:ro
+      # Mount uploads directory
+      - ./backend/uploads:/app/uploads
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/"]
@@ -24,24 +25,18 @@ services:
       start_period: 40s
     networks:
       - medical-chatbot-network
-    depends_on:
-      - redis
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`api.localhost`)"
-      - "traefik.http.services.backend.loadbalancer.server.port=8080"
 
   # Frontend Service
   frontend:
     build:
       context: ./frontend
-      target: production
     container_name: medical-chatbot-frontend
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
+      - NEXT_PUBLIC_API_ENDPOINT=/get
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
@@ -53,10 +48,6 @@ services:
       - medical-chatbot-network
     depends_on:
       - backend
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`localhost`)"
-      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
 
   # Redis for caching (optional)
   redis:
@@ -75,6 +66,8 @@ services:
       retries: 3
     networks:
       - medical-chatbot-network
+    profiles:
+      - cache
 
   # Nginx Reverse Proxy (optional)
   nginx:
