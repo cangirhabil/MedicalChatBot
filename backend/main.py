@@ -97,6 +97,20 @@ async def root() -> HealthCheck:
     )
 
 
+@app.get(
+    "/healthz",
+    response_model=HealthCheck,
+    summary="Liveness/Readiness Probe",
+    description="Lightweight health endpoint used by platform health checks"
+)
+async def healthz() -> HealthCheck:
+    return HealthCheck(
+        status="ok",
+        version=settings.version,
+        timestamp=datetime.now().isoformat()
+    )
+
+
 if __name__ == "__main__":
     import uvicorn
     
