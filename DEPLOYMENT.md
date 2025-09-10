@@ -25,8 +25,8 @@ git push origin master
 Add these in Render dashboard → Environment tab:
 
 ```bash
-PINECONE_API_KEY=pcsk_Cga7L_9Q2h4AGdwSv164o3DRSgtEMQBwiz6oXsRpDiAuQ6wPM9DFmmVizmiCFGNyd38ou
-GEMINI_API_KEY=AIzaSyCk6e9Kwxcnpx4y9TOyv15EsL2JbIWtxZE
+PINECONE_API_KEY="
+GEMINI_API_KEY=""
 ALLOWED_ORIGINS=https://your-frontend-domain.vercel.app
 ```
 
