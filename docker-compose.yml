@@ -3,6 +3,7 @@ services:
   backend:
     build:
       context: ./backend
+      target: production
     container_name: medical-chatbot-api
     ports:
       - "8080:8080"
@@ -30,6 +31,7 @@ services:
   frontend:
     build:
       context: ./frontend
+      target: production
     container_name: medical-chatbot-frontend
     ports:
       - "3000:3000"

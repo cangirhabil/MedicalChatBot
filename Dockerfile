@@ -1,5 +1,5 @@
-# Production Dockerfile for Medical ChatBot Backend  
-FROM python:3.11-slim
+# Multi-stage Production Dockerfile for Medical ChatBot Backend
+FROM python:3.11-slim AS base
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
@@ -21,6 +21,9 @@ WORKDIR /app
 # Copy requirements first for better caching
 COPY backend/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Production stage
+FROM base AS production
 
 # Copy all backend files to /app (maintaining structure)
 COPY backend/ ./

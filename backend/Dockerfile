@@ -1,5 +1,7 @@
-# Production Dockerfile for Medical ChatBot Backend
-FROM python:3.11-slim
+# Multi-stage Dockerfile for Medical ChatBot Backend
+
+# Base stage with common setup
+FROM python:3.11-slim AS base
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
@@ -21,6 +23,29 @@ WORKDIR /app
 # Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Development stage
+FROM base AS development
+
+# Install development dependencies if needed
+RUN pip install --no-cache-dir watchdog
+
+# Create uploads directory
+RUN mkdir -p uploads
+
+# Expose port
+EXPOSE 8080
+
+# For development, we'll mount the code as volume
+# Health check for development
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:${PORT:-8080}/healthz || exit 1
+
+# Development command (with reload)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
+
+# Production stage
+FROM base AS production
 
 # Copy source code
 COPY . .

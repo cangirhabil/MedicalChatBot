@@ -1,6 +1,7 @@
 # Multi-stage build for Medical ChatBot Frontend
-# Stage 1: Dependencies
-FROM node:20-alpine AS dependencies
+
+# Stage 1: Base with dependencies
+FROM node:20-alpine AS base
 
 # Set working directory
 WORKDIR /app
@@ -9,18 +10,38 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
-# Stage 2: Build
-FROM node:20-alpine AS builder
+# Stage 2: Development
+FROM base AS development
+
+# Set environment
+ENV NODE_ENV=development
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Development command
+CMD ["npm", "run", "dev"]
+
+# Stage 3: Dependencies only (for production build)
+FROM node:20-alpine AS dependencies
 
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 
-# Install all dependencies (including dev)
-RUN npm ci
+# Install dependencies
+RUN npm ci --only=production
+
+# Stage 4: Build
+FROM base AS builder
+
+WORKDIR /app
 
 # Copy source code
 COPY . .
@@ -28,7 +49,7 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Stage 3: Production
+# Stage 5: Production
 FROM node:20-alpine AS production
 
 # Set environment variables

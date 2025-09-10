@@ -10,6 +10,7 @@ services:
     environment:
       - NODE_ENV=development
       - PYTHONPATH=/app
+      - PORT=8080
     env_file:
       - ./backend/.env
     volumes:
@@ -19,19 +20,19 @@ services:
     restart: unless-stopped
     networks:
       - medical-chatbot-dev
-    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
 
   # Development Frontend
   frontend-dev:
     build:
       context: ./frontend
-      target: dependencies
+      target: development
     container_name: medical-chatbot-frontend-dev
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
       - NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
+      - NEXT_PUBLIC_API_ENDPOINT=/get
     volumes:
       # Mount source code for hot reload
       - ./frontend:/app
@@ -42,7 +43,6 @@ services:
       - medical-chatbot-dev
     depends_on:
       - backend-dev
-    command: ["npm", "run", "dev"]
 
 networks:
   medical-chatbot-dev:

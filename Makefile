@@ -104,6 +104,46 @@ dev-local: ## Start both backend and frontend locally (non-Docker)
 	@echo "$(BLUE)Starting frontend on port 3000...$(NC)"
 	@cd frontend && npm run dev
 
+start-frontend: ## Start frontend with dependency check
+	@echo "$(GREEN)🚀 Starting frontend...$(NC)"
+	@echo "$(BLUE)📦 Checking Node.js dependencies...$(NC)"
+	@if ! command -v node >/dev/null 2>&1; then \
+		echo "$(YELLOW)⚠️  Node.js not found. Please install Node.js first$(NC)"; \
+		exit 1; \
+	fi
+	@if ! command -v npm >/dev/null 2>&1; then \
+		echo "$(YELLOW)⚠️  npm not found. Please install npm first$(NC)"; \
+		exit 1; \
+	fi
+	@if [ ! -d "frontend/node_modules" ]; then \
+		echo "$(BLUE)📦 Installing frontend dependencies...$(NC)"; \
+		cd frontend && npm install; \
+	else \
+		echo "$(GREEN)✅ Frontend dependencies already installed$(NC)"; \
+	fi
+	@echo "$(GREEN)🚀 Starting frontend development server...$(NC)"
+	@cd frontend && npm run dev
+
+start-backend: ## Start backend with dependency check
+	@echo "$(GREEN)🚀 Starting backend...$(NC)"
+	@echo "$(BLUE)📦 Checking Python dependencies...$(NC)"
+	@if ! command -v python3 >/dev/null 2>&1 && ! command -v python >/dev/null 2>&1; then \
+		echo "$(YELLOW)⚠️  Python not found. Please install Python first$(NC)"; \
+		exit 1; \
+	fi
+	@if ! command -v pip >/dev/null 2>&1 && ! command -v pip3 >/dev/null 2>&1; then \
+		echo "$(YELLOW)⚠️  pip not found. Please install pip first$(NC)"; \
+		exit 1; \
+	fi
+	@echo "$(BLUE)📦 Installing/updating backend dependencies...$(NC)"
+	@cd backend && pip install -r requirements.txt
+	@if [ ! -f "backend/.env" ]; then \
+		echo "$(YELLOW)⚠️  .env file not found. Creating from example...$(NC)"; \
+		cp backend/.env.example backend/.env 2>/dev/null || echo "$(YELLOW)⚠️  Please create backend/.env file with your API keys$(NC)"; \
+	fi
+	@echo "$(GREEN)🚀 Starting backend development server...$(NC)"
+	@cd backend && python main.py
+
 shell-backend: ## Open shell in backend container
 	docker exec -it medical-chatbot-api bash
 
