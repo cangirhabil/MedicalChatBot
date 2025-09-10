@@ -17,7 +17,7 @@ git push origin master
 5. Configure:
    - **Name**: `medical-chatbot-backend`
    - **Environment**: Docker
-   - **Dockerfile Path**: `backend/Dockerfile`
+   - **Dockerfile Path**: `Dockerfile` (root directory)
    - **Instance Type**: Starter (Free) or Professional
 
 ### 2. Environment Variables (Render)
