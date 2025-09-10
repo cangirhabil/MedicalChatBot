@@ -57,16 +57,25 @@ build: ## Build all images without starting
 	@echo "$(BLUE)🏗️  Building images...$(NC)"
 	docker-compose build
 
-setup: ## Initial setup (copy env files)
+setup: ## Initial setup (copy env files and install dependencies)
 	@echo "$(GREEN)⚙️  Setting up environment files...$(NC)"
 	@if [ ! -f backend/.env ]; then \
 		cp backend/.env.example backend/.env; \
 		echo "$(YELLOW)⚠️  Please edit backend/.env with your API keys$(NC)"; \
+	else \
+		echo "$(GREEN)✅ Backend .env already exists$(NC)"; \
 	fi
 	@if [ ! -f frontend/.env.local ]; then \
 		cp frontend/.env.local.example frontend/.env.local; \
 		echo "$(GREEN)✅ Frontend .env.local created$(NC)"; \
+	else \
+		echo "$(GREEN)✅ Frontend .env.local already exists$(NC)"; \
 	fi
+	@echo "$(BLUE)📦 Installing backend dependencies...$(NC)"
+	@cd backend && pip install -r requirements.txt
+	@echo "$(BLUE)📦 Installing frontend dependencies...$(NC)"
+	@cd frontend && npm install
+	@echo "$(GREEN)✅ Setup complete!$(NC)"
 
 install: setup build ## Full installation (setup + build)
 	@echo "$(GREEN)✅ Installation complete! Run 'make start' to begin$(NC)"
@@ -80,6 +89,21 @@ docker-reset: stop docker-prune ## Complete Docker reset
 	@echo "$(YELLOW)🔥 Docker completely reset$(NC)"
 
 # Development helpers
+dev-backend: ## Start backend in development mode
+	@echo "$(BLUE)🛠️  Starting backend development server...$(NC)"
+	@cd backend && python main.py
+
+dev-frontend: ## Start frontend in development mode
+	@echo "$(BLUE)🛠️  Starting frontend development server...$(NC)"
+	@cd frontend && npm run dev
+
+dev-local: ## Start both backend and frontend locally (non-Docker)
+	@echo "$(YELLOW)🛠️  Starting local development servers...$(NC)"
+	@echo "$(BLUE)Starting backend on port 8080...$(NC)"
+	@cd backend && python main.py &
+	@echo "$(BLUE)Starting frontend on port 3000...$(NC)"
+	@cd frontend && npm run dev
+
 shell-backend: ## Open shell in backend container
 	docker exec -it medical-chatbot-api bash
 

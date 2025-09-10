@@ -135,17 +135,23 @@ docker run -p 8080:8080 --env-file .env medical-chatbot-api
 ## Quick Start
 
 ```bash
-# Setup environment
+# Complete setup (install dependencies)
 make setup
+
+# Start Docker development (hot reload)  
+make dev
+
+# Start local development (without Docker)
+make dev-local
 
 # Start production
 make start
 
-# Start development (hot reload)
-make dev
-
 # View status
 make status
+
+# Show help
+make help
 ```
 
 ## Service URLs
