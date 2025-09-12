@@ -35,7 +35,7 @@ export const MESSAGES = {
     "Hello! I am your Medical AI Assistant. How can I help you? You can ask medical questions and get health information.",
   ERROR: "Sorry, an error occurred right now. Please try again later.",
   PLACEHOLDER: "Type your medical question...",
-  STATUS_ONLINE: "Online - How can I help you?",
+  STATUS_ONLINE: "Online",
   DISCLAIMER:
     "\"This AI assistant is for informational purposes only. For emergencies, please consult a healthcare professional.\" -Habil Cangir- ",
 } as const;
